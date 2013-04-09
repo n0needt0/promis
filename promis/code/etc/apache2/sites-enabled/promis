@@ -1,0 +1,18 @@
+<VirtualHost  *:80>
+  ServerName promis.helppain.net
+  ServerAdmin webmaster@helppain.net
+  AllowEncodedSlashes On
+  DirectoryIndex index.php index.html
+    SetEnv HTTPS 1
+  RewriteEngine On
+
+  DocumentRoot /var/www/api/web_roots/promis
+  Alias /assets/  /var/www/api/web_roots/promis/assets/
+  <Directory "/var/www/api/web_roots/promis">
+      Options All
+      AllowOverride All
+      Order allow,deny
+      Allow from all
+    RewriteEngine on
+  </Directory>
+</VirtualHost>
