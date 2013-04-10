@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
 <head>
-	<title> Mobile Outcomes </title>
+	<title> mOutcomes </title>
 
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -41,25 +41,23 @@
 	<div data-role="page">
 
 		<div data-role="header">
-			<h1>Mobile Outcomes</h1>
+		      <h1>mOutcomes</h1>
+		      <div data-role="navbar">
+                <ul>
+                 <?php if(empty($top)){?>
+                  <li><a href="/mhome">Home</a></li>
+                  <li><a href="/msetup">Setup</a></li>
+                  <?php } ?>
+                  <li><a href="#">Español</a></li>
+                </ul>
+             </div>
 		</div>
 
 		<div data-role="content">
-
-			<ul data-role="listview" data-inset="true" data-theme="c" data-dividertheme="b">
-				<li data-role="list-divider">Snippet Pages</li>
-				<li><a href="buttons.html">Buttons</a></li>
-				<li><a href="grids.html">Grids</a></li>
-				<li><a href="collapsibles.html">Collapsible Boxes</a></li>
-				<li><a href="collapsible-sets.html">Collapsible Sets</a></li>
-				<li><a href="forms.html">Form Elements</a></li>
-				<li><a href="lists.html">List Views</a></li>
-			</ul>
-
+		 <?php echo $content; ?>
 		</div>
-
 		<div data-role="footer" data-theme="c">
-			<p>&copy; <?php echo date("Y",time());?> - Mobile Outcomes</p>
+			<h1>&copy; <?php echo date("Y",time());?> - mOutcomes</h1>
 		</div>
 
 	</div>
@@ -71,6 +69,31 @@
     <script src="/assets/mobile/js/jquery.mobile-1.3.0.min.js"></script>
     <script src="/assets/mobile/cordova-2.5.0.js"></script>
     <script src="/assets/mobile/js/application.js"></script>
+
+    <script>
+    var Conf = Conf || {};
+
+    <?php
+      if( JSDEBUG )
+      {
+          echo " Conf.DEBUG_MODE = 'console'; ";
+      }
+    ?>
+
+    function debug(msg){
+
+       if('debug' === Conf.DEBUG_MODE)
+       {
+           eval('debugger;');
+       }
+
+       if('console' === Conf.DEBUG_MODE)
+       {
+           console.log(msg);
+       }
+    }
+
+</script>
 
 </body>
 </html>

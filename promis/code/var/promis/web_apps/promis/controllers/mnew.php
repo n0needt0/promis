@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class mHome extends MY_Controller {
+class mNew extends MY_Controller {
 
     public function __construct()
     {
@@ -10,7 +10,7 @@ class mHome extends MY_Controller {
 
 	public function index()
 	{
-	    $data = array('top'=>true);
-		$this->load->view('mobile/mhome',$data);
+	    $data = array();
+		$this->load->view('mobile/mnew',$data);
 	}
 }
