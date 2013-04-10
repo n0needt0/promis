@@ -5,7 +5,7 @@ set :use_sudo, true
 
 set :keep_releases, 2
 
-set :application_name, "promis.helppain.net"
+set :application_name, "promis"
 
 set :user, Capistrano::CLI.ui.ask("User for deploy:")
 set :password, Capistrano::CLI.ui.ask("Password for user #{user}:"){|q|q.echo = false}
@@ -24,7 +24,7 @@ set :scm_auth_cache, false
 #don't copy .svn directories from the cache to production
 #set :copy_exclude, [".svn" "conf"]
 
-set :stages, %w(production staging)
+set :stages, %w(production)
 set :default_stage, "promis"
 
 require 'capistrano/ext/multistage'
