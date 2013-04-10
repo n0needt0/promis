@@ -87,16 +87,16 @@ namespace :deploy do
   
   desc "get correct config"
   task :get_correct_config do
-    run "cp #{deploy_to}/current/promis/code/var/promis/web_apps/promis/config/config.#{stage}.php #{deploy_to}/current/promis/code/var/promis/web_apps/promis/config/config.php"
+    run "mv #{deploy_to}/current/promis/code/var/promis/web_apps/promis/config/config.#{stage}.php #{deploy_to}/current/promis/code/var/promis/web_apps/promis/config/config.php"
     
-    run "cp #{deploy_to}/current/promis/code/var/promis/web_apps/promis/config/constants.#{stage}.php #{deploy_to}/current/promis/code/var/promis/web_apps/promis/config/constants.php"
+    run "mv #{deploy_to}/current/promis/code/var/promis/web_apps/promis/config/constants.#{stage}.php #{deploy_to}/current/promis/code/var/promis/web_apps/promis/config/constants.php"
     
-    run "cp #{deploy_to}/current/promis/code/var/promis/web_roots/promis/#{stage}.htaccess #{deploy_to}/current/promis/code/var/promis/web_roots/promis/.htaccess"
+    run "mv #{deploy_to}/current/promis/code/var/promis/web_roots/promis/#{stage}.htaccess #{deploy_to}/current/promis/code/var/promis/web_roots/promis/.htaccess"
   end
   
   desc "get correct apache"
    task :get_correct_apache_conf do
-   sudo "cp #{deploy_to}/current/promis/code/etc/apache2/sites-enabled/#{application_name}.#{stage} /etc/apache2/sites-enabled/#{application_name}"
+   sudo "mv #{deploy_to}/current/promis/code/etc/apache2/sites-enabled/#{application_name}.#{stage} /etc/apache2/sites-enabled/#{application_name}"
   end
 
   desc "Reload Apache"
