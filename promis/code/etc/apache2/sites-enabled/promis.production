@@ -6,9 +6,9 @@
     SetEnv HTTPS 1
   RewriteEngine On
 
-  DocumentRoot /var/www/api/web_roots/promis
-  Alias /assets/  /var/www/api/web_roots/promis/assets/
-  <Directory "/var/www/api/web_roots/promis">
+  DocumentRoot /var/www/promis.production/web_roots/promis
+  Alias /assets/  /var/www/promis.production/web_roots/promis/assets/
+  <Directory "/var/www/promis.production/web_roots/promis">
       Options All
       AllowOverride All
       Order allow,deny
