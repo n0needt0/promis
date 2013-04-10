@@ -13,13 +13,12 @@ set :ssh_options, {:user => user, :password => password, :forward_agent => true 
 set :scm, "git"
 set :user, "#{user}"
 set :scm_passphrase, "#{password}"
-set :repository, "https://github.com/n0needt0/net.helppain.promis"
+set :repository, "https://github.com/n0needt0/promis"
 
 #set :scm_command, "git_umask"
 set :branch, "master"
 set :deploy_via, :remote_cache
 set :scm_auth_cache, false
-
 
 
 #don't copy .svn directories from the cache to production
@@ -78,7 +77,7 @@ namespace :deploy do
 
   desc "Write current revision to "
   task :publish_revision do
-  run "content=`cat #{deploy_to}/current/REVISION`;ip=`ifconfig eth0 | grep 'inet addr:' | cut -d: -f2 | awk '{ print $1}'`; sed -i \"s/MY_REVISION/$content-$ip/g\" #{deploy_to}/current/mail.oopzy.com/code/var/mail.oopzy.com/web_apps/mail.oopzy.com/views/templates/main.php"
+  run "content=`cat #{deploy_to}/current/REVISION`;ip=`ifconfig eth0 | grep 'inet addr:' | cut -d: -f2 | awk '{ print $1}'`; sed -i \"s/MY_REVISION/$content-$ip/g\" #{deploy_to}/current/promis/code/var/promis/web_apps/promis/views/templates/main.php"
   end
   
   desc "clean up old releases"
@@ -88,41 +87,22 @@ namespace :deploy do
   
   desc "get correct config"
   task :get_correct_config do
-    run "cp #{deploy_to}/current/mail.oopzy.com/code/var/mail.oopzy.com/web_apps/mail.oopzy.com/config/config.#{stage}.php #{deploy_to}/current/mail.oopzy.com/code/var/mail.oopzy.com/web_apps/mail.oopzy.com/config/config.php"
+    run "cp #{deploy_to}/current/promis/code/var/promis/web_apps/promis/config/config.#{stage}.php #{deploy_to}/current/promis/code/var/promis/web_apps/promis/config/config.php"
     
-    run "cp #{deploy_to}/current/mail.oopzy.com/code/var/mail.oopzy.com/web_apps/mail.oopzy.com/config/constants.#{stage}.php #{deploy_to}/current/mail.oopzy.com/code/var/mail.oopzy.com/web_apps/mail.oopzy.com/config/constants.php"
+    run "cp #{deploy_to}/current/promis/code/var/promis/web_apps/promis/config/constants.#{stage}.php #{deploy_to}/current/promis/code/var/promis/web_apps/promis/config/constants.php"
     
-    run "cp #{deploy_to}/current/mail.oopzy.com/code/var/mail.oopzy.com/web_roots/mail.oopzy.com/#{stage}.htaccess #{deploy_to}/current/mail.oopzy.com/code/var/mail.oopzy.com/web_roots/mail.oopzy.com/.htaccess"
+    run "cp #{deploy_to}/current/promis/code/var/promis/web_roots/promis/#{stage}.htaccess #{deploy_to}/current/promis/code/var/promis/web_roots/promis/.htaccess"
   end
-  
- desc "get correct smtp2redis"
-   task :get_correct_smtp2redis do
-   
-       sudo "cp #{deploy_to}/current/mail.oopzy.com/code/srv/smtp2redis/config.php.#{stage} #{deploy_to}/current/mail.oopzy.com/code/srv/smtp2redis/config.php"
-       sudo "ln -sf #{deploy_to}/current/mail.oopzy.com/code/srv/smtp2redis /srv"
-    
-       sudo "cp #{deploy_to}/current/mail.oopzy.com/code/etc/init/smtp2redis.conf.#{stage} /etc/init/smtp2redis.conf"
-  end
-  
-  desc "start correct smtp2redis"
-   task :start_correct_smtp2redis , :on_error => :continue do
-     sudo "start smtp2redis"
-   end
-  
-  desc "restart correct smtp2redis"
-   task :restart_correct_smtp2redis do
-     sudo "restart smtp2redis"
-   end
   
   desc "get correct apache"
    task :get_correct_apache_conf do
-   sudo "cp #{deploy_to}/current/mail.oopzy.com/code/etc/apache2/sites-enabled/#{application_name}.#{stage} /etc/apache2/sites-enabled/#{application_name}"
+   sudo "cp #{deploy_to}/current/promis/code/etc/apache2/sites-enabled/#{application_name}.#{stage} /etc/apache2/sites-enabled/#{application_name}"
   end
 
   desc "Reload Apache"
   task :reload_apache do
     unless remote_file_exists?(apache_root)
-      sudo "ln -sf #{deploy_to}/current/mail.oopzy.com/code/var/mail.oopzy.com #{apache_root}"
+      sudo "ln -sf #{deploy_to}/current/promis/code/var/promis #{apache_root}"
     end
     
     sudo "/etc/init.d/apache2 reload"
@@ -148,11 +128,6 @@ after 'deploy', 'deploy:remove_old'
 
 #change permission to www-data user
 after 'deploy', 'deploy:chown_to_www_data'
-
-#get right smtp2redis service
-after 'deploy','deploy:get_correct_smtp2redis'
-after 'deploy','deploy:start_correct_smtp2redis'
-after 'deploy','deploy:restart_correct_smtp2redis'
 
 #restart apache
 after 'deploy', 'deploy:reload_apache'
