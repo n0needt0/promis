@@ -21,13 +21,14 @@ if ($minify && class_exists('JSMin'))
 
 // add in already minified libraries
 // PHPJS needs to be first
-$output .= file_get_contents('mobile/js/jquery-1.8.2-min.js')."\n";
-$output .= file_get_contents('mobile/js/ios-orientationchange-fix.min.js');
-$output .= file_get_contents('mobile/js/jquery.mobile-1.3.0.min.js');
-$output .= file_get_contents('mobile/cordova-2.5.0.js');
-$output .= file_get_contents('vendor/backbone.js');
+$output .= file_get_contents('vendor/mobile/jquery-1.8.2-min.js')."\n";
+
 $output .= file_get_contents('vendor/underscore.js');
 $output .= file_get_contents('vendor/json2.js');
+
+$output .= file_get_contents('vendor/mobile/ios-orientationchange-fix.min.js');
+$output .= file_get_contents('vendor/mobile/jquery.mobile-1.3.0.min.js');
+$output .= file_get_contents('vendor/mobile/cordova-2.5.0.js');
 
 // we'll never have a release go longer than 90 days. never. ever ever. haha.
 $expires = 60 * 60 * 24 * 90;
