@@ -37,7 +37,7 @@ define('FOPEN_WRITE_CREATE_STRICT',				'xb');
 define('FOPEN_READ_WRITE_CREATE_STRICT',		'x+b');
 
 define('LOGFILENAME','promis.log');
-define('CACHEVER',time());
+define('CACHEVER',5);
 define('JSDEBUG',1);
 define('API_TTL',1);
 define('GOOGLE_TRANSLATE_KEY','AIzaSyBA-pVXs1YkbBZo0PKgoQtMEMSfjsiAN4c');

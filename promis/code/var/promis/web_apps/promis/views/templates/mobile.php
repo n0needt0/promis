@@ -62,12 +62,8 @@
 
 	</div>
 
-	   <!-- Javascript includes -->
-    <script src="/assets/mobile/js/jquery-1.8.2-min.js"></script>
-    <script src="/assets/mobile/js/mobileinit.js"></script>
-    <script src="/assets/mobile/js/ios-orientationchange-fix.min.js"></script>
-    <script src="/assets/mobile/js/jquery.mobile-1.3.0.min.js"></script>
-    <script src="/assets/mobile/cordova-2.5.0.js"></script>
+	<!-- Javascript includes -->
+    <script src="/assets/combined.js.mobile.php?r=<?php echo CACHEVER; ?>"></script>
     <script src="/assets/mobile/js/application.js"></script>
 
     <script>
