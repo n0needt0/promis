@@ -1,3 +1,12 @@
+<script>
+var head= document.getElementsByTagName('head')[0];
+var script= document.createElement('script');
+script.setAttribute('type', 'text/javascript');
+script.setAttribute('src', '/assets/vendor/require/require.js');
+script.setAttribute('data-main', "/assets/mobile/js/mnew.config");
+head.appendChild(script);
+</script>
+
 <ul data-role="listview" data-inset="true">
     <li data-role="list-divider">Friday, October 8, 2010 </li>
     <li><a href="index.html">

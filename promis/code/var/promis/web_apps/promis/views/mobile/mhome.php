@@ -1,17 +1,17 @@
+<script>
+var head= document.getElementsByTagName('head')[0];
+var script= document.createElement('script');
+script.setAttribute('type', 'text/javascript');
+script.setAttribute('src', '/assets/vendor/require/require.js');
+script.setAttribute('data-main', "/assets/mobile/js/mhome.config");
+head.appendChild(script);
+</script>
+
 <form action="/mnew" method="get">
 <p>
 Welcome to Mobile Outcomes.
 </p>
 
+<input type="text" name="pin" id="pin" value="Enter your PIN"/>
 
-	<div data-role="fieldcontain">
-		<label for="name">PIN:</label>
-		<input type="text" name="pin" id="pin" value="Enter your PIN"/>
-
-	</div>
-
-	<fieldset class="ui-grid-a">
-		<div class="ui-block-a"><button type="submit" data-theme="d">Cancel</button></div>
-		<div class="ui-block-b"><button type="submit" data-theme="a">Submit</button></div>
-	</fieldset>
 </form>

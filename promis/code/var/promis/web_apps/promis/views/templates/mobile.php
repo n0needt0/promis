@@ -38,19 +38,18 @@
 	<script>(function(a,b,c){if(c in b&&b[c]){var d,e=a.location,f=/^(a|html)$/i;a.addEventListener("click",function(a){d=a.target;while(!f.test(d.nodeName))d=d.parentNode;"href"in d&&(d.href.indexOf("http")||~d.href.indexOf(e.host))&&(a.preventDefault(),e.href=d.href)},!1)}})(document,window.navigator,"standalone")</script>
 </head>
 <body>
-	<div data-role="page">
-
+	<div data-role="page" id="page">
 		<div data-role="header">
 		      <h1>mOutcomes</h1>
+		<?php if(empty($top)){?>
 		      <div data-role="navbar">
                 <ul>
-                 <?php if(empty($top)){?>
                   <li><a href="/mhome">Home</a></li>
                   <li><a href="/msetup">Setup</a></li>
-                  <?php } ?>
                   <li><a href="#">Español</a></li>
                 </ul>
              </div>
+        <?php } ?>
 		</div>
 
 		<div data-role="content">
@@ -61,10 +60,6 @@
 		</div>
 
 	</div>
-
-	<!-- Javascript includes -->
-    <script src="/assets/combined.js.mobile.php?r=<?php echo CACHEVER; ?>"></script>
-    <script src="/assets/mobile/js/application.js"></script>
 
     <script>
     var Conf = Conf || {};
@@ -89,7 +84,13 @@
        }
     }
 
+    $(document).ready(function() {
+        // disable ajax navs do page reload always
+        $.mobile.ajaxLinksEnabled = false;
+    });
 </script>
+
+<!-- Javascript includes -->
 
 </body>
 </html>
